@@ -13,6 +13,8 @@
 
 #str -> list -> str
 
+a = 'a\nb'
+print(a.split())
 class tratar:
     def __init__(self,deck : list[str]) -> None:
         self.deck = deck

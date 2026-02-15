@@ -1,27 +1,36 @@
-#tipo de entrada: 20 MOuntain
-                #10 SOl ring                  
-    #nome vai pro scry-google -card conjurer
+baralho= '20 mountain\n10 swamp\n2 Shock\n1 Aangs JOurney'  
 
+class Formatador:
+    
+    def __init__(self,deck):
+        deck_formatado = []
+        self.card_quant = []
+        self.card_title = []
+        
+        for card in deck.splitlines():
+            deck_formatado.append(tuple(card.split()))
+        self.deck_formatado = deck_formatado
+        
+        print(self.deck_formatado)
 
-    #qunatidade vai pra pasta e copia e cola colocando o (1) como o windows já faz
-#variaveis principais
-    #nome_en
-    #nome_pt
-    #quantidade
-    #tipo (pt)
-    #texto (pt)
+        for i in self.deck_formatado:
+            self.card_quant.append(i[0])
+        print(self.card_quant)
+        
+        for i in self.deck_formatado:
+            self.card_title.append(' '.join(i[1:]))
+        print(self.card_title)
+        
+    def quantidades(self):
+        return self.card_quant
+    def titulos(self):
+        return self.card_title 
+       
+ex = Formatador(baralho)
+'''
 
-#str -> list -> str
+A fazer:
+Fazer com que capitalize cada palavra no nome
+Dar join com ' ' nas palavras do nome
 
-a = 'a\nb'
-print(a.split())
-class tratar:
-    def __init__(self,deck : list[str]) -> None:
-        self.deck = deck
-    def quant(self):
-        for carta in self.deck:
-            return carta.split()[0]    
-    def titulo(self):
-        for carta in self.deck:
-            return (' '.join(carta.split()[1:]))
-
+'''

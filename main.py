@@ -1,6 +1,8 @@
 from scrypull import pull
-from trad import traduzir
-from tratar_entrada import tratar
+from traduzir import traduzir
+from tratar_entrada import 
+user_deck = 'a\n'
+'b'
 
 carta= tratar(["1 Daybreak Ranger"])
 carta_pull = pull(carta.titulo())#input tratado, carta encontrada

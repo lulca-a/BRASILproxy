@@ -17,9 +17,9 @@ janela.configure(bg='#938f71')
 janela.resizable(False, False)
 
 
-digite = tk.Label(janela, text="DIGITE SEU DECK:", font=('Planewalker', 10, 'bold'), 
+digite = tk.Label(janela, text="Digite seu deck:", font=('Planewalker', 10, 'bold'), 
                   fg='#2c2c2c', bg='#938f71')
-digite.grid(row=0, column=0, sticky="w", padx=20, pady=(15, 5))
+digite.grid(row=0, column=0, sticky="w", padx=10, pady=(15, 5))
 
 caixa_texto = tk.Text(janela, 
                       width=42, 

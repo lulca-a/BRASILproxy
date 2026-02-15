@@ -1,10 +1,5 @@
 #this whole file was made by AI
-#this is made for education purposes
-#do not sell the cards u generat in any shape or form
-#do not use the cards generated form this script in tournments 
-
 import requests
-import time
 
 def pull(nome_da_carta):
     # URL da API do Scryfall para busca exata por nome

@@ -33,4 +33,5 @@ A fazer:
 Fazer com que capitalize cada palavra no nome
 Dar join com ' ' nas palavras do nome
 
+após isso, remover os prints, variavle baralho e a instacia no final do codigo
 '''

@@ -1,11 +1,11 @@
 from scrypull import pull
 from traduzir import traduzir
-from tratar_entrada import 
+from formatador import Formatador
 user_deck = 'a\n'
 'b'
 
-carta= tratar(["1 Daybreak Ranger"])
-carta_pull = pull(carta.titulo())#input tratado, carta encontrada
+carta= Formatador(["1 Daybreak Ranger"])
+carta_pull = pull(carta())#sem funcionamento até o formatador estar completo
 
 if carta_pull != None:
     print(carta_pull)
@@ -17,3 +17,8 @@ if carta_pull != None:
     print(titulo_pt)
 else:
     print('carta nao encontrada')
+    
+    '''
+    A FAzer:
+    ambiente virtual (env)
+    '''

@@ -33,15 +33,8 @@ def pull(nome_da_carta):
             info["faces"] = faces
             
         return info
-# --- EXEMPLO DE USO ---
-#resultado = pull('Sol Ring')
 '''
-if resultado:
-    print(f"--- Dados da Carta: {resultado['nome']} ---")
-    print(f"Custo de Mana: {resultado['mana_cost']}")
-    print(f"Tipo: {resultado['type_line']}")
-    print(f"Texto (Oracle): \n{resultado['oracle_text']}")
-    print(f"\nLink da Imagem: {resultado['image_url']}")
+A fazer:
+montar o Cache
+Fazer o Header
 '''
-#print(resultado)
-#tratar saída de texto

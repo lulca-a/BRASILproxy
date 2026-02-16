@@ -6,5 +6,3 @@ def traduzir(carta :dict):
     print(t.translate(carta['nome'],src='en',dest='pt').text)
     print(t.translate(carta['type_line'],src='en',dest='pt').text)
     print(t.translate(carta['oracle_text'],src='en',dest='pt').text)
-a = Translator().translate('Haste',src='en',dest='pt')
-print(a)

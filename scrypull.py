@@ -1,9 +1,16 @@
 #this whole file was made by AI
 import requests
+import time
+
+SCRY_HEADERS = {
+    "User-Agent": "BRASIL-Proxy/1.0 (##########@gmail.com)",
+    "Accept": "application/json"
+}
+SCRY_DELAY = 0.1
 
 def pull(nome_da_carta):
     # URL da API do Scryfall para busca exata por nome
-    url = f"https://api.scryfall.com/cards/named?exact={nome_da_carta}"
+    url = f"https://api.scryfall.com/cards/named?fuzzy={nome_da_carta}"
     
     response = requests.get(url)
     
@@ -16,8 +23,7 @@ def pull(nome_da_carta):
             "mana_cost": dados.get("mana_cost"),
             "type_line": dados.get("type_line"),
             "oracle_text": dados.get("oracle_text"),
-            "rarity": dados.get("rarity"),
-            "image_url": dados.get("image_uris", {}).get("large") # URL da imagem original
+            "rarity": dados.get("rarity")
         }
         
         # Tratamento para cartas de duas faces (Transform/Meld)
@@ -33,8 +39,15 @@ def pull(nome_da_carta):
             info["faces"] = faces
             
         return info
+    time.sleep(SCRY_DELAY)
+#print(pull('aangs'))
 '''
+
 A fazer:
 montar o Cache
 Fazer o Header
+salvar no banco de dados
+threads ou asuyncro para puxar mais cartas de uma vez
+gracefull degradation
+
 '''

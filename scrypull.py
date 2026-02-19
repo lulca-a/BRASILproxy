@@ -29,8 +29,8 @@ def pull(nome_da_carta):
             #"mana_cost": dados.get("mana_cost"
             # ),
             "tipo": dados.get("type_line"),
-            "texto": dados.get("oracle_text")
-            #"rarity": dados.get("rarity")
+            "texto": dados.get("oracle_text"),
+            "imagem": dados.get("image_uris", {}).get("png")
         }
         
         # Tratamento para cartas de duas faces (Transform/Meld)

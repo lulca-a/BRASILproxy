@@ -1,11 +1,17 @@
 #this whole file was made by AI
 import requests
 import time
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+email =  os.getenv('EMAIL')
 
 SCRY_HEADERS = {
-    "User-Agent": "BRASIL-Proxy/1.0 (##########@gmail.com)",
+    "User-Agent": F"BRASIL-Proxy/1.0 {email}",
     "Accept": "application/json"
 }
+
 SCRY_DELAY = 0.1
 
 def pull(nome_da_carta):

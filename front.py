@@ -10,13 +10,12 @@ def restaurar_placeholder(event):
         caixa_texto.insert("1.0", "20 Mountain\n2 BLACK LOTUS\n1 aang's journey")
         caixa_texto.config(fg="#937460")
 def pegar_texto():
-    # '1.0' significa: linha 1, caractere 0 (o início)
-    # tk.END significa: até o final do conteúdo
     user_input = caixa_texto.get("1.0", tk.END)
-    print(user_input)        
+    print(user_input)    
+        
 janela = tk.Tk()
 janela.title("BRASIL proxy")
-janela.geometry("340x320")
+janela.geometry("380x320")
 janela.configure(bg='#938f71')
 janela.resizable(False, False)
 

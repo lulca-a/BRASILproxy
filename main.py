@@ -4,7 +4,7 @@ from formatador import Formatador
 from limpar import limpar
 from escrever import escrever
 
-baralho= '1 lightning bolt'
+baralho= '1 gandalf the grey'
 
 #tratamento do input
 deck = Formatador(baralho)

@@ -4,10 +4,11 @@ import requests
 
 def limpar(url):
 
-
     r = requests.get(url)
     img_array = np.frombuffer(r.content, np.uint8)
     img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+
+    img = cv2.resize(img, (745, 1040))
 
     texto = np.array([
     [60,656],[680,656], 

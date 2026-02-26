@@ -28,19 +28,13 @@ def pull(nome_da_carta):
     )
 
     dados = response.json()
-
-    if "data" not in dados:
-        raise ValueError(dados.get("details", "Erro na API"))
-
     cartas = dados["data"]
 
-    # 🔥 Ordem de prioridade de frame
+   
     prioridade_frames = ["2015", "2003", "1993"]
+    permitidos = ["core", "expansion", "masters"]
 
     carta_escolhida = None
-
-    # 3️⃣ Loop por prioridade
-    permitidos = ["core", "expansion", "masters"]
 
     for frame in prioridade_frames:
         for carta in cartas:
@@ -87,7 +81,7 @@ def pull(nome_da_carta):
 
 
 if __name__ == '__main__':
-    carta = 'gandalf the grey'
+    carta = 'island'
     resultado = pull(carta)
     print(resultado)
     limpar(resultado['imagem'])

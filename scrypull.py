@@ -1,62 +1,93 @@
-#this whole file was made by AI
 import requests
 import time
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-email =  os.getenv('EMAIL')
-
-SCRY_HEADERS = {
-    "User-Agent": F"BRASIL-Proxy/1.0 {email}",
-    "Accept": "application/json"
-}
+from limpar import limpar
 
 SCRY_DELAY = 0.1
 
 def pull(nome_da_carta):
-    # URL da API do Scryfall para busca exata por nome
-    url = f"https://api.scryfall.com/cards/named?fuzzy={nome_da_carta}"
-    
-    response = requests.get(url)
- 
-    if response.status_code == 200:
-        dados = response.json()
-        
-        # Extraindo as informações principais
-        info = {
-            "nome": dados.get("name"),
-            #"mana_cost": dados.get("mana_cost"
-            # ),
-            "tipo": dados.get("type_line"),
-            "texto": dados.get("oracle_text"),
-            "imagem": dados.get("image_uris", {}).get("png")
+
+    # 1️⃣ Corrige nome com fuzzy
+    response = requests.get(
+        "https://api.scryfall.com/cards/named",
+        params={"fuzzy": nome_da_carta}
+    )
+
+    if response.status_code != 200:
+        raise ValueError("card does not exist")
+
+    dados = response.json()
+    nome_oficial = dados.get("name")
+
+    # 2️⃣ Busca todas prints válidas
+    response = requests.get(
+        "https://api.scryfall.com/cards/search",
+        params={
+            "q": f'!"{nome_oficial}" -is:promo -is:digital',
+            "unique": "prints"
         }
-        
-        # Tratamento para cartas de duas faces (Transform/Meld)
-        #if "card_faces" in dados:
-         #   faces = []
-          #  for face in dados["card_faces"]:
-           #     faces.append({
-            #        "nome": face.get("name"),
-             #       "mana_cost": face.get("mana_cost"),
-              #      "type_line": face.get("type_line"),
-               #     "oracle_text": face.get("oracle_text")
-               # })
-           # info["faces"] = faces
-        time.sleep(SCRY_DELAY)
-        return info
-    else:
-        raise ValueError('card does not exist')
-    
-#print(pull('aangs JOURNEY'))
-'''
+    )
 
-A fazer:
-montar o Cache
-Fazer o Header
-salvar no banco de dados
-threads ou asuyncro para puxar mais cartas de uma vez
-gracefull degradation
+    dados = response.json()
 
-'''
+    if "data" not in dados:
+        raise ValueError(dados.get("details", "Erro na API"))
+
+    cartas = dados["data"]
+
+    # 🔥 Ordem de prioridade de frame
+    prioridade_frames = ["2015", "2003", "1993"]
+
+    carta_escolhida = None
+
+    # 3️⃣ Loop por prioridade
+    permitidos = ["core", "expansion", "masters"]
+
+    for frame in prioridade_frames:
+        for carta in cartas:
+            if (
+                carta.get("layout") == "normal"
+                and carta.get("frame") == frame
+                and carta.get("border_color") == "black"
+                and carta.get("set_type") in permitidos
+                and not carta.get("promo")
+                and not carta.get("digital")
+                and carta.get("booster") == True
+            ):
+                carta_escolhida = carta
+                break
+        if carta_escolhida:
+            break
+
+    # 4️⃣ Fallback geral (qualquer normal válida)
+    if not carta_escolhida:
+        for carta in cartas:
+            if (
+                carta.get("layout") == "normal"
+                and carta.get("border_color") == "black"
+            ):
+                carta_escolhida = carta
+                break
+
+    # 5️⃣ Fallback absoluto
+    if not carta_escolhida:
+        carta_escolhida = cartas[0]
+
+    info = {
+        "nome": carta_escolhida.get("name"),
+        "mana_cost": carta_escolhida.get("mana_cost"),
+        "tipo": carta_escolhida.get("type_line"),
+        "texto": carta_escolhida.get("oracle_text"),
+        "imagem": carta_escolhida.get("image_uris", {}).get("png"),
+        "set": carta_escolhida.get("set"),
+        "frame": carta_escolhida.get("frame")
+    }
+
+    time.sleep(SCRY_DELAY)
+    return info
+
+
+if __name__ == '__main__':
+    carta = 'gandalf the grey'
+    resultado = pull(carta)
+    print(resultado)
+    limpar(resultado['imagem'])

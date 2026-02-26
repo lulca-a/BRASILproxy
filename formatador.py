@@ -20,13 +20,3 @@ class Formatador:
         return self.card_quant
     def titulos(self):
         return self.card_title 
-       
-
-
-'''
-A fazer:
-Dar join com ' ' nas palavras do nome
-Tratamento de erro
-
-após isso, remover os prints, variavle baralho e a instacia no final do codigo
-'''

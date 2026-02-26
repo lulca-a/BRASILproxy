@@ -22,27 +22,27 @@ def quebrar_texto(draw, texto, fonte, largura_max):
 
     return linhas
 
+def escrever(carta):
+    
+    nome = traduzir(carta['nome'])
+    tipo = traduzir(carta['tipo'])
+    texto = traduzir(carta['texto'])
 
-carta = pull('karlov of the ghosth')
-nome = traduzir(carta['nome'])
-tipo = traduzir(carta['tipo'])
-texto = traduzir(carta['texto'])
+    img = Image.open("resultado.png").convert("RGBA")
+    draw = ImageDraw.Draw(img)
+    fonte = ImageFont.truetype("fonts/Beleren2016-Bold.ttf", 40)
+    fonte_tipo = ImageFont.truetype("fonts/Matrix-Bold.ttf", 37)
+    fonte_texto = ImageFont.truetype("fonts/Mplantin.ttf", 28)
 
-img = Image.open("resultado.png").convert("RGBA")
-draw = ImageDraw.Draw(img)
-fonte = ImageFont.truetype("fonts/Beleren2016-Bold.ttf", 40)
-fonte_tipo = ImageFont.truetype("fonts/Matrix-Bold.ttf", 37)
-fonte_texto = ImageFont.truetype("fonts/Mplantin.ttf", 28)
+    draw.text((58,60), nome, fill=(20,20,20), font=fonte)
+    draw.text((65,600), tipo, fill=(20,20,20), font=fonte)
 
-draw.text((58,60), nome, fill=(20,20,20), font=fonte)
-draw.text((65,600), tipo, fill=(20,20,20), font=fonte)
+    linhas = quebrar_texto(draw, texto, fonte_texto, largura_max=520)
 
-linhas = quebrar_texto(draw, texto, fonte_texto, largura_max=520)
-
-y = 660
-for linha in linhas:
-    draw.text((66, y), linha, fill=(20,20,20), font=fonte_texto)
-    y += 40
+    y = 660
+    for linha in linhas:
+        draw.text((66, y), linha, fill=(20,20,20), font=fonte_texto)
+        y += 40
 
 
-img.save('traduzido.png')
+    img.save(f'{carta['nome']}.png')

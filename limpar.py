@@ -40,4 +40,6 @@ def limpar(url):
 
     cv2.imwrite('resultado.png', carta_limpa)
 
-# limpar('karlov.png')
+#fazer lista de coordenandas
+
+

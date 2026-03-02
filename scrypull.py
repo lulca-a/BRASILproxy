@@ -73,7 +73,8 @@ def pull(nome_da_carta):
         "texto": carta_escolhida.get("oracle_text"),
         "imagem": carta_escolhida.get("image_uris", {}).get("png"),
         "set": carta_escolhida.get("set"),
-        "frame": carta_escolhida.get("frame")
+        "frame": carta_escolhida.get("frame"),
+        "custo": carta_escolhida.get("mana_cost")
     }
 
     time.sleep(SCRY_DELAY)
@@ -81,7 +82,8 @@ def pull(nome_da_carta):
 
 
 if __name__ == '__main__':
-    carta = 'island'
+    carta = 'gandalf the grey'
     resultado = pull(carta)
     print(resultado)
     limpar(resultado['imagem'])
+    print(resultado['custo'])

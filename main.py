@@ -4,7 +4,8 @@ from formatador import Formatador
 from limpar import limpar
 from escrever import escrever
 
-baralho= '1 gandalf the grey'
+# baralho= '20 Black Lotus\n10 Lightning Bolt\n15 Brainstorm\n8 Eternal Witness\n12 Glorybringer\n6 Counterspell\n9 Sol Ring\n14 Dark Ritual\n7 Path to Exile\n11 Llanowar Elves'
+baralho = '1 gandalf the grey'
 
 #tratamento do input
 deck = Formatador(baralho)
@@ -19,26 +20,19 @@ for carta in titulos:
     carta = (pull(carta))
     nome_en = carta['nome']
     quantidade = quantidades[pos]
-
+    
     #texto
     nome_pt = traduzir(nome_en)
     tipo_pt = traduzir(carta['tipo'])
     texto_pt = traduzir(carta['texto'])
     print(f'Nome EN/PT: {nome_en} / {nome_pt}\nQuantidade: {quantidade}\nTipo: {tipo_pt}\nTexto: {texto_pt}')
 
-    #visual
-    imagem_original = carta['imagem']
-    limpar(imagem_original)
+    #visual}
+    limpar(carta)
     escrever(carta)
 
     print('------------------------------------')
     
-'''
-variaveis:
-deck:titulos e quantidades (input)
-nome_en (scry)
-quantidade (input)
-nome_pt (trad)
-texto_pt (trad)
-tipo_pt (trad)
-'''
+''
+
+#  {1}{r}

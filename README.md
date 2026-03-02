@@ -49,3 +49,12 @@ Arquitetura
                 
 
 ''' 
+## ROADMAP
+# 1.0
+* Dicionário de coordenadas para cartas de frames específicos
+* Ajuste de texto baseado no tamanho do texto
+* Adicionar os icones
+* Atualziar UI
+# 2.0
+* Opção de escolher o frame/arte
+* Opção de escolher idioma

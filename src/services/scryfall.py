@@ -1,6 +1,5 @@
 import requests
 import time
-from limpar import limpar
 
 SCRY_DELAY = 0.1
 
@@ -79,11 +78,3 @@ def pull(nome_da_carta):
 
     time.sleep(SCRY_DELAY)
     return info
-
-
-if __name__ == '__main__':
-    carta = 'gandalf the grey'
-    resultado = pull(carta)
-    print(resultado)
-    limpar(resultado['imagem'])
-    print(resultado['custo'])

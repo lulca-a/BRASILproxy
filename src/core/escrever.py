@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
-from scrypull import pull
-from traduzir import traduzir
+from src.services.scryfall import pull
+from src.core.traduzir import traduzir
 import re
 import os
 
@@ -169,8 +169,8 @@ def escrever(carta):
     texto = traduzir(carta['texto'])
 
     # FONTES
-    fonte_nome = ImageFont.truetype("fonts/Beleren2016-Bold.ttf", 40)
-    fonte_tipo = ImageFont.truetype("fonts/Matrix-Bold.ttf", 38)
+    fonte_nome = ImageFont.truetype("src/assets/fonts/Beleren2016-Bold.ttf", 40)
+    fonte_tipo = ImageFont.truetype("src/assets/fonts/Matrix-Bold.ttf", 38)
 
     # Ajuste automático do tipo
     largura_tipo_max = 544
@@ -180,7 +180,7 @@ def escrever(carta):
     if largura_tipo > largura_tipo_max:
         escala = largura_tipo_max / largura_tipo
         novo_tamanho = int(38 * escala)
-        fonte_tipo = ImageFont.truetype("fonts/Matrix-Bold.ttf", novo_tamanho)
+        fonte_tipo = ImageFont.truetype("src/assets/fonts/Matrix-Bold.ttf", novo_tamanho)
 
     # Desenha nome e tipo
     draw.text((58, 60), nome, fill=(20, 20, 20), font=fonte_nome)
@@ -190,7 +190,7 @@ def escrever(carta):
     fonte_texto, linhas, altura_total = ajustar_fonte_texto(
         draw,
         texto,
-        "fonts/Mplantin.ttf",
+        "src/assets/fonts/Mplantin.ttf",
         28
     )
 

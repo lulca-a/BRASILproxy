@@ -11,9 +11,9 @@ def limpar(carta):
     img = cv2.resize(img, (745, 1040))
 
     texto = np.array([
-    [60,656],[680,656], 
+    [60,659],[680,659], 
     [680,915],[586,920],  
-    [570,935],[60,935]], dtype=np.int32)
+    [570,935],[566,950],[430,950],[430,930],[312,930],[312,950],[60,950]], dtype=np.int32)
 
     tipo = np.array([(58,593),(610,593),
                        (610,635),(58,635)], dtype=np.int32)
@@ -52,20 +52,15 @@ def limpar(carta):
 
 
 '''
-COORDENADAS = {
-    "2015": {
-        "normal": {
-            "nome": (x1, y1, x2, y2),
-            "arte": (x1, y1, x2, y2),
-            "tipo": (x1, y1, x2, y2),
-            "texto": (x1, y1, x2, y2),
-            "mana": (x1, y1, x2, y2)
-        }
-    },
-    "2003": {
-        ...
-    },
-    "1993": {
-        ...
-    }
+
+BIBLIOTECA_COORDENADAS = {
+    "modern_normal": np.array([...]), # Para feitiços, encantamentos
+    "modern_creature": np.array([...]), # Desvia do Poder/Resistência
+    "old_creature":
+    "old_normal"S
+    "saga": np.array([...]),          # Vertical
+    "planeswalker_3_abilities": [...],
+    "adventure_left": [...],
+    "adventure_right": [...]
+}
 }'''

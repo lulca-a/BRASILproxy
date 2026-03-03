@@ -1,11 +1,11 @@
-from scrypull import pull
-from traduzir import traduzir
-from formatador import Formatador
-from limpar import limpar
-from escrever import escrever
+from src.services.scryfall import pull
+from src.core.traduzir import traduzir
+from src.core.formatador import Formatador
+from src.core.limpar import limpar
+from src.core.escrever import escrever
 
 # baralho= '20 Black Lotus\n10 Lightning Bolt\n15 Brainstorm\n8 Eternal Witness\n12 Glorybringer\n6 Counterspell\n9 Sol Ring\n14 Dark Ritual\n7 Path to Exile\n11 Llanowar Elves'
-baralho = '1 gandalf the grey'
+baralho = "2 Gandalf the grey"
 
 #tratamento do input
 deck = Formatador(baralho)

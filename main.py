@@ -4,8 +4,8 @@ from src.core.formatador import Formatador
 from src.core.limpar import limpar
 from src.core.escrever import escrever
 
-# baralho= '20 Black Lotus\n10 Lightning Bolt\n15 Brainstorm\n8 Eternal Witness\n12 Glorybringer\n6 Counterspell\n9 Sol Ring\n14 Dark Ritual\n7 Path to Exile\n11 Llanowar Elves'
-baralho = "2 Gandalf the grey"
+baralho= '20 Black Lotus\n10 Lightning Bolt\n15 Brainstorm\n8 Eternal Witness\n12 Glorybringer\n6 Counterspell\n9 Sol Ring\n14 Dark Ritual\n7 Path to Exile\n11 Llanowar Elves'
+# baralho = "2 battlee cry goblin" 
 
 #tratamento do input
 deck = Formatador(baralho)
@@ -21,11 +21,14 @@ for carta in titulos:
     nome_en = carta['nome']
     quantidade = quantidades[pos]
     
-    #texto
+    #tradução
     nome_pt = traduzir(nome_en)
     tipo_pt = traduzir(carta['tipo'])
     texto_pt = traduzir(carta['texto'])
-    print(f'Nome EN/PT: {nome_en} / {nome_pt}\nQuantidade: {quantidade}\nTipo: {tipo_pt}\nTexto: {texto_pt}')
+
+    #print
+    for chave, valor in carta.items():
+        print(f"{chave}: {valor}")
 
     #visual}
     limpar(carta)

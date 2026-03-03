@@ -1,5 +1,4 @@
 from PIL import Image, ImageDraw, ImageFont
-from src.services.scryfall import pull
 from src.core.traduzir import traduzir
 import re
 import os
@@ -118,7 +117,9 @@ def ajustar_fonte_texto(draw, texto, caminho_fonte, tamanho_base):
 def desenhar_texto_com_simbolos(draw, img, x, y, texto, fonte):
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    SIMBOLOS_DIR = os.path.join(BASE_DIR, "simbolos")
+    PROJECT_ROOT = os.path.dirname(BASE_DIR)
+
+    SIMBOLOS_DIR = os.path.join(PROJECT_ROOT, "assets", "simbolos")
 
     partes = separar_simbolos(texto)
     x_atual = x
@@ -161,7 +162,7 @@ def desenhar_texto_com_simbolos(draw, img, x, y, texto, fonte):
 
 def escrever(carta):
 
-    img = Image.open("resultado.png").convert("RGBA")
+    img = Image.open("src/testes/resultado.png").convert("RGBA")
     draw = ImageDraw.Draw(img)
 
     nome = traduzir(carta['nome'])
@@ -215,4 +216,4 @@ def escrever(carta):
         altura_linha = bbox[3] - bbox[1]
         y += altura_linha + 6
 
-    img.save(f"{carta['nome']}.png")
+    img.save(f"src/testes/{carta['nome']}.png")

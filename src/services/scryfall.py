@@ -73,8 +73,18 @@ def pull(nome_da_carta):
         "imagem": carta_escolhida.get("image_uris", {}).get("png"),
         "set": carta_escolhida.get("set"),
         "frame": carta_escolhida.get("frame"),
-        "custo": carta_escolhida.get("mana_cost")
+        "layout": carta_escolhida.get("layout"),
+        "custo": carta_escolhida.get("mana_cost"),
+        "power": carta_escolhida.get("power"),
+        "toughness": carta_escolhida.get("toughness"),
+        "print_text": carta_escolhida.get("printed_text")
     }
+
 
     time.sleep(SCRY_DELAY)
     return info
+
+if __name__ == '__main__':
+    print(pull('gandalf the grey')['tipo'])
+    print(pull('gandalf the grey')['texto'])
+    print(pull('gandalf the grey')['print_text'])

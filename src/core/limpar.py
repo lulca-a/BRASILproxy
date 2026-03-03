@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import requests
-
+from src.database.coordenadas import escolha_layout
 def limpar(carta):
     url = carta['imagem']
     r = requests.get(url)
@@ -10,19 +10,16 @@ def limpar(carta):
 
     img = cv2.resize(img, (745, 1040))
 
-    texto = np.array([
-    [60,659],[680,659], 
-    [680,915],[586,920],  
-    [570,935],[566,950],[430,950],[430,930],[312,930],[312,950],[60,950]], dtype=np.int32)
+    texto = np.array(escolha_layout(carta), dtype=np.int32)
 
-    tipo = np.array([(58,593),(610,593),
+    tipo = np.array([(58,595),(610,595),
                        (610,635),(58,635)], dtype=np.int32)
     
     custo = [i for i in carta['custo'] if i == '{']#isso adapta o tamanho do recorte dependendo dos espaços de símbolos de custo
     espaço_custo = 48*len(custo)
     
-    nome = np.array([(60,60),(690-espaço_custo,60),
-                       (690-espaço_custo,100),(60,100)], dtype=np.int32)
+    nome = np.array([(60,59),(690-espaço_custo,59),
+                       (690-espaço_custo,98),(60,98)], dtype=np.int32)
 
     
     mask = np.zeros(img.shape[:2], dtype=np.uint8)
@@ -39,9 +36,9 @@ def limpar(carta):
     cv2.polylines(debug, [texto], True, (0,0,255), 2)
     cv2.polylines(debug, [tipo], True, (0,0,255), 2)
     cv2.polylines(debug, [nome], True, (0,0,255), 2)
-    cv2.imwrite("polly.png", debug)
+    cv2.imwrite("src/testes/polly.png", debug)
 
-    cv2.imwrite("resultado.png", carta_limpa)
+    cv2.imwrite("src/testes/resultado.png", carta_limpa)
 
 
 #criatura
@@ -53,14 +50,5 @@ def limpar(carta):
 
 '''
 
-BIBLIOTECA_COORDENADAS = {
-    "modern_normal": np.array([...]), # Para feitiços, encantamentos
-    "modern_creature": np.array([...]), # Desvia do Poder/Resistência
-    "old_creature":
-    "old_normal"S
-    "saga": np.array([...]),          # Vertical
-    "planeswalker_3_abilities": [...],
-    "adventure_left": [...],
-    "adventure_right": [...]
-}
+
 }'''

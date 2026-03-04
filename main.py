@@ -4,38 +4,29 @@ from src.core.formatador import Formatador
 from src.core.limpar import limpar
 from src.core.escrever import escrever
 
-baralho= '20 Black Lotus\n10 Lightning Bolt\n15 Brainstorm\n8 Eternal Witness\n12 Glorybringer\n6 Counterspell\n9 Sol Ring\n14 Dark Ritual\n7 Path to Exile\n11 Llanowar Elves'
-# baralho = "2 battlee cry goblin" 
+deck_1993 = '''4 Black Lotus
+4 Lightning Bolt
+4 Shivan Dragon'''
 
-#tratamento do input
+deck_2003 = '''4 Darksteel Colossus
+4 Eternal Witness
+4 Decree of Justice'''
+
+deck_modern = '''4 Fable of the Mirror-Breaker
+4 The One Ring
+4 Sheoldred, the Apocalypse'''
+
+
+baralho = '1 black lotus'
+
 deck = Formatador(baralho)
 quantidades = deck.quantidades()
 titulos = deck.titulos()
 
 for carta in titulos:
-    
+    carta = pull(carta)
+    print(carta['nome'])
     print('------------------------------------')
-    #tratamento de carta a carta
-    pos = titulos.index(carta)
-    carta = (pull(carta))
-    nome_en = carta['nome']
-    quantidade = quantidades[pos]
-    
-    #tradução
-    nome_pt = traduzir(nome_en)
-    tipo_pt = traduzir(carta['tipo'])
-    texto_pt = traduzir(carta['texto'])
-
-    #print
-    for chave, valor in carta.items():
-        print(f"{chave}: {valor}")
-
-    #visual}
     limpar(carta)
     escrever(carta)
-
-    print('------------------------------------')
-    
-''
-
-#  {1}{r}
+  

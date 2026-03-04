@@ -12,6 +12,7 @@ def traduzir(texto_en):
         "Lifelink": "Vínculo com a vida",
         "Vigilance": "Vigilância",
         "Deathtouch": "Toque Mortífero",
+        "Sorceery": "Feitiço",
         "Indestructible": "Indestrutível",
         "Scry": "Adivinhar",
         "Ward": "Salvaguarda"

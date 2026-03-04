@@ -184,8 +184,15 @@ def escrever(carta):
         fonte_tipo = ImageFont.truetype("src/assets/fonts/Matrix-Bold.ttf", novo_tamanho)
 
     # Desenha nome e tipo
-    draw.text((58, 60), nome, fill=(20, 20, 20), font=fonte_nome)
-    draw.text((66, 600), tipo, fill=(20, 20, 20), font=fonte_tipo)
+    if carta['frame'] == '2003':
+        draw.text((68, 68), nome, fill=(20, 20, 20), font=fonte_nome)
+    else:
+        draw.text((58, 60), nome, fill=(20, 20, 20), font=fonte_nome)
+
+    if carta['frame'] == '1993':
+        draw.text((86, 584), tipo, fill=(20, 20, 20), font=fonte_tipo)
+    else:
+        draw.text((66, 600), tipo, fill=(20, 20, 20), font=fonte_tipo)
 
     # Ajuste inteligente do texto
     fonte_texto, linhas, altura_total = ajustar_fonte_texto(

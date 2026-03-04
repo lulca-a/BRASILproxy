@@ -5,7 +5,7 @@ SCRY_DELAY = 0.1
 
 def pull(nome_da_carta):
 
-    # 1️⃣ Corrige nome com fuzzy
+    # Corrige nome com fuzzy
     response = requests.get(
         "https://api.scryfall.com/cards/named",
         params={"fuzzy": nome_da_carta}
@@ -17,7 +17,8 @@ def pull(nome_da_carta):
     dados = response.json()
     nome_oficial = dados.get("name")
 
-    # 2️⃣ Busca todas prints válidas
+    # Busca todas prints válidas
+    
     response = requests.get(
         "https://api.scryfall.com/cards/search",
         params={

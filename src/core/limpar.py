@@ -1,7 +1,8 @@
 import cv2
 import numpy as np
 import requests
-from src.database.coordenadas import escolha_layout
+from src.database.coordenadas import escolha_layout_texto,escolha_layout_nome,escolha_layout_tipo
+
 def limpar(carta):
     url = carta['imagem']
     r = requests.get(url)
@@ -10,18 +11,12 @@ def limpar(carta):
 
     img = cv2.resize(img, (745, 1040))
 
-    texto = np.array(escolha_layout(carta), dtype=np.int32)
+    texto = np.array(escolha_layout_texto(carta), dtype=np.int32)
 
-    tipo = np.array([(58,595),(610,595),
-                       (610,635),(58,635)], dtype=np.int32)
-    
-    custo = [i for i in carta['custo'] if i == '{']#isso adapta o tamanho do recorte dependendo dos espaços de símbolos de custo
-    espaço_custo = 48*len(custo)
-    
-    nome = np.array([(60,59),(690-espaço_custo,59),
-                       (690-espaço_custo,98),(60,98)], dtype=np.int32)
+    tipo = np.array(escolha_layout_tipo(carta), dtype=np.int32)
+            
+    nome = np.array(escolha_layout_nome(carta), dtype=np.int32)
 
-    
     mask = np.zeros(img.shape[:2], dtype=np.uint8)
 
 
